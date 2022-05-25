@@ -1,4 +1,4 @@
-#canvas {
+canvas {
     position:absolute;
     border: 3px solid black;
     top: 50%;
@@ -6,9 +6,16 @@
     transform: translate(-50%, -50%);
     width: 75%;
     height: 75%;
+}
+
+#canvas{
     /* set background to canvas */
     background-image: url('../assets/desert-background.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+img {
+    display:none;
 }
