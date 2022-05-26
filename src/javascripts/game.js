@@ -1,16 +1,18 @@
 class Game {
-    constructor(context, collisionContext, width, height){
+    constructor(context, collisionContext, width, height, loseLifeSoundEffect){
         this.context = context;
         this.collisionContext = collisionContext;
         this.width = width;
         this.height = height;
         this.enemies= [];
         this.explosions = [];
-        this.enemyInterval = 2000;
+        this.enemyInterval = 1000;
         this.enemyTimer = 0;
         //as game level increases, decrease the enemy interval
-        this.health = 5;
+        this.lives = 5;
+        this.loseLife = loseLifeSoundEffect;
         this.gameLevel = 0;
+        this.gameOver = false;
         this.enemyTypes = ['vulture', 'mummy']
         
     }

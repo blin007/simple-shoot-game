@@ -14,7 +14,13 @@ class Enemy {
 
     update(deltaTime){
         this.x-=this.velocityX * deltaTime;
-        if(this.x < 0 - this.width) this.markedForDeletion = true;
+        if(this.x < 0 - this.width) {
+            this.game.loseLife.autoplay = true;
+            this.markedForDeletion = true;
+            this.game.lives--;
+            this.game.loseLife.play();
+            if(this.game.lives <= 0) this.game.gameOver = true;
+        }
         if (this.frameInterval < this.frameTimer){
             if (this.frame < this.maxFrame) this.frame++;
             else this.frame = 0;

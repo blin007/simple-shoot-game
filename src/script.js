@@ -17,17 +17,32 @@ document.addEventListener('DOMContentLoaded', function(){
     let score = 0;
     context.font = '50px Impact';
 
-    let lastTime = 1;
+    //background game music
+    // const backgroundMusic = new Audio('./assets/music/background.ogg');
+    // backgroundMusic.volume = 0.1;
+    // backgroundMusic.autoplay = true;
+    // backgroundMusic.loop = true;
+    // backgroundMusic.muted = true;
+    // backgroundMusic.play();
+
+    //game over music
+    const gameOverMusic = new Audio('./assets/music/gameOver.ogg');
+    gameOverMusic.volume = 0.1;
+
+    //lose a life sound effect
+    const loseLife = new Audio('./assets/music/loseLife.wav');
+    loseLife.volume = 0.1;
     
     //create new game instance, it passes in the NON-collision AND collision canvas
-    const game = new Game(context, collisionContext, canvas.width, canvas.height)
+    const game = new Game(context, collisionContext, canvas.width, canvas.height, loseLife)
 
     //draw score function
-    function drawScore() {
-        context.fillStyle='black';
-        context.fillText('Score: ' + score, 45, 75);
+    function drawScoreAndHealth() {
         context.fillStyle='white';
+        //health
         context.fillText('Score: ' + score, 50, 75);
+        //health
+        context.fillText('Lives: ' + game.lives, 250, 75);
     }
 
     //CLICK EVENT LISTENER -> COLOR DETECTION
@@ -53,6 +68,16 @@ document.addEventListener('DOMContentLoaded', function(){
         })        
     })
 
+    //draw game over message
+    function drawGameOver(){
+        context.textAlign = 'center';
+        context.fillStyle='white';
+        context.fillText('GAME OVER', canvas.width * 0.5 + 5, canvas.height * 0.5 - 20);
+        context.fillText('Final Score is ' + score, canvas.width * 0.5 + 5, canvas.height * 0.5 + 40);
+        context.fillText('Reload to try again', canvas.width * 0.5 + 5, canvas.height * 0.5 + 100);
+    }
+
+    let lastTime = 1;
     //ANIMATE FUNCTION
     //count how many milliseconds occur between each frame using timestamp
     function animate(timeStamp){
@@ -60,12 +85,16 @@ document.addEventListener('DOMContentLoaded', function(){
         context.clearRect(0, 0, canvas.width, canvas.height);
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
-        drawScore();
+        drawScoreAndHealth();
         game.update(deltaTime);
         game.draw();
-        requestAnimationFrame(animate);
+        if(!game.gameOver) requestAnimationFrame(animate);
+        else {
+            gameOverMusic.autoplay = true;
+            gameOverMusic.play();
+            drawScoreAndHealth();
+            drawGameOver();
+        };
     }
     animate(0);
 })
-
-
