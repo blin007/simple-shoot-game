@@ -6,9 +6,10 @@ class Game {
         this.height = height;
         this.enemies= [];
         this.explosions = [];
-        this.enemyInterval = 5000;
+        this.enemyInterval = 2000;
         this.enemyTimer = 0;
         //as game level increases, decrease the enemy interval
+        this.health = 5;
         this.gameLevel = 0;
         this.enemyTypes = ['vulture', 'mummy']
         
@@ -25,13 +26,15 @@ class Game {
             this.enemyTimer+=deltaTime;
         }
         this.enemies.forEach((enemy) => enemy.update(deltaTime));
+
+        //update explosions
+        this.explosions = this.explosions.filter((explosion) => !explosion.markedForDeletion)
+        this.explosions.forEach((explosion) => explosion.update(deltaTime))
     }
 
     draw(){
-        this.enemies.forEach((enemy) => {
-            // console.log(this.collisionContext)
-            enemy.draw(this.context, this.collisionContext)
-        });
+        this.enemies.forEach((enemy) => enemy.draw(this.context, this.collisionContext));
+        this.explosions.forEach((explosion) => explosion.draw(this.context));
     }
 
     #addNewEnemy(){

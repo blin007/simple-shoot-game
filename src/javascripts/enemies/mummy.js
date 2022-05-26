@@ -8,7 +8,7 @@ class Mummy extends Enemy {
         this.width = this.spriteWidth * this.sizeModifier;
         this.height = this.spriteHeight * this.sizeModifier;
         this.x = this.game.width;
-        //they fly so only have them appear in bottom part of screen
+        //they walk so only have them appear in bottom part of screen
         this.y = Math.random() * (this.game.height* 0.25) + (this.game.height * 0.65) - this.height;
 
         //the column of the sprite sheet and max number of rows

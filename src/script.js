@@ -35,16 +35,20 @@ document.addEventListener('DOMContentLoaded', function(){
         //getImageData has 4 arguments: x, y, width, height of the area we want to scan
         // we want to scan the area we click with our mouse
         const detectPixelColor = collisionContext.getImageData(evt.x - canvasPosition.left, evt.y - canvasPosition.top, 1, 1)
-        
         const pc = detectPixelColor.data;
         console.log(pc);
         game.enemies.forEach(enemy => {
             if(enemy.randomColors[0] === pc[0] && enemy.randomColors[1] === pc[1] && enemy.randomColors[2] === pc[2]){
-                //collision!
+                //play explosion sound on collision and mark for deletion
+                const sound = new Audio('./assets/effects/boom.wav')
+                sound.volume = 0.1;
+                sound.play();
+ 
                 enemy.markedForDeletion = true;
                 score++;
-                // if()
-                // game.explosions.push(new Explosion(enemy.x, enemy.y, enemy.width));
+                if(enemy.type === 'mummy') game.explosions.push(new MummyExplosion(enemy.x, enemy.y, enemy.width))
+                else if (enemy.type === 'vulture') game.explosions.push(new VultureExplosion(enemy.x, enemy.y, enemy.width))
+                console.log(game.explosions)
             }
         })        
     })
@@ -55,11 +59,9 @@ document.addEventListener('DOMContentLoaded', function(){
         collisionContext.clearRect(0, 0, collisionCanvas.width, collisionCanvas.height)
         context.clearRect(0, 0, canvas.width, canvas.height);
         const deltaTime = timeStamp - lastTime;
-
         lastTime = timeStamp;
         drawScore();
         game.update(deltaTime);
-        // game.explosions
         game.draw();
         requestAnimationFrame(animate);
     }
