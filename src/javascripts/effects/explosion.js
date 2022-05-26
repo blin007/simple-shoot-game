@@ -4,7 +4,7 @@ class Explosion {
         this.x = x;
         this.y = y;
         this.timeSinceLastFrame = 0;
-        this.frameInterval = 200;
+        this.frameInterval = 100;
         this.markedForDeletion = false;
     }
     update(deltaTime){

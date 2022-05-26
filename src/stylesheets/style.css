@@ -2,6 +2,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+
 }
 
 canvas {
@@ -12,6 +13,7 @@ canvas {
     transform: translate(-50%, -50%);
     width: 75%;
     height: 75%;
+    cursor: url('../assets/cursor-icon.png'), auto;
 }
 
 #canvas1{
@@ -28,4 +30,16 @@ canvas {
 
 img {
     display:none;
+}
+
+div.start {
+    padding-top: 30px;
+    text-align: center;
+}
+div.start button.playBtn {
+    font-size: 40px;
+}
+
+button.playBtn:hover {
+    cursor: pointer;
 }
