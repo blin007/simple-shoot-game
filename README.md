@@ -1,7 +1,7 @@
 # simple-shoot-game
 Simple shooting game using plain javascript, html, and css
 
-<!-- View the game [here](TODO) -->
+View the game [here](https://blin007.github.io/simple-shoot-game/)
 
 Press the 'Play' button at the top to try it out!
 
