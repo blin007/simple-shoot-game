@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 gameOverMusic.play();
                 drawScoreAndHealth();
                 drawGameOver();
-            };
+            }
         }
         animate(0);
     })
