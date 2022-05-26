@@ -10,7 +10,7 @@ class Enemy {
         Math.floor(Math.random() * 255)]
         this.color = `rgb(${this.randomColors[0]},${this.randomColors[1]},
         ${this.randomColors[2]})`
-        console.log(this.color);
+        // console.log(this.color);
     }
 
     update(deltaTime){
@@ -26,8 +26,12 @@ class Enemy {
     }
 
     draw(context, collisionContext){
+       
+        // collisionContext.save()
         collisionContext.fillStyle = this.color;
+        // console.log(collisionContext.fillStyle)
         collisionContext.fillRect(this.x, this.y, this.width, this.height);
+        // collisionContext.restore();
         context.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, 
         this.spriteHeight, this.x, this.y, this.width, this.height);
     }

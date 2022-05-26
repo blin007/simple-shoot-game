@@ -11,6 +11,7 @@ class Game {
         //as game level increases, decrease the enemy interval
         this.gameLevel = 0;
         this.enemyTypes = ['vulture', 'mummy']
+        
     }
 
     update(deltaTime){
@@ -27,7 +28,10 @@ class Game {
     }
 
     draw(){
-        this.enemies.forEach((enemy) => enemy.draw(this.context, this.collisionContext));
+        this.enemies.forEach((enemy) => {
+            // console.log(this.collisionContext)
+            enemy.draw(this.context, this.collisionContext)
+        });
     }
 
     #addNewEnemy(){

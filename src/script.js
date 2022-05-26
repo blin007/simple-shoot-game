@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas1');
     const context = canvas.getContext('2d');
     const style = getComputedStyle(canvas);
     canvas.width = parseInt(style.width, 10);
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let canvasPosition = canvas.getBoundingClientRect();
     
     //collision canvas setup
-    const collisionCanvas = document.getElementById('collisionCanvas');
+    const collisionCanvas = document.getElementById('collisionCanvas')
     const collisionContext = collisionCanvas.getContext('2d');
     const collisionStyle = getComputedStyle(collisionCanvas);
     collisionCanvas.width = parseInt(collisionStyle.width, 10);
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
     window.addEventListener('click', function(evt) {
         //getImageData has 4 arguments: x, y, width, height of the area we want to scan
         // we want to scan the area we click with our mouse
-        const detectPixelColor = collisionContext.getImageData(evt.x, evt.y, 1, 1)
+        const detectPixelColor = collisionContext.getImageData(evt.x - canvasPosition.left, evt.y - canvasPosition.top, 1, 1)
         
         const pc = detectPixelColor.data;
         console.log(pc);
@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', function(){
         })        
     })
 
-
     //ANIMATE FUNCTION
     //count how many milliseconds occur between each frame using timestamp
     function animate(timeStamp){
         collisionContext.clearRect(0, 0, collisionCanvas.width, collisionCanvas.height)
         context.clearRect(0, 0, canvas.width, canvas.height);
         const deltaTime = timeStamp - lastTime;
+
         lastTime = timeStamp;
         drawScore();
         game.update(deltaTime);
