@@ -1,6 +1,7 @@
 class Mummy extends Enemy {
     constructor(game){
         super(game);
+        this.type = 'mummy';
         this.spriteWidth = 48;
         this.spriteHeight = 48;
         this.sizeModifier = Math.random() * 0.5 + 1.5;

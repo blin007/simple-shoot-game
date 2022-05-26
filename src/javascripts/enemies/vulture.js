@@ -1,6 +1,7 @@
 class Vulture extends Enemy {
     constructor(game){
         super(game)
+        this.type = 'vulture';
         //the width and height of one frame in the sprite sheet 
         this.spriteWidth = 48;
         this.spriteHeight = 48;

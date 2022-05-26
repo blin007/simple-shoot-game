@@ -2,10 +2,15 @@ class Enemy {
     constructor(game) {
         this.game = game;
         this.markedForDeletion = false;
-        // this.frame = 0;
-        // this.maxFrame = 5;
         this.frameInterval = 100;
         this.frameTimer = 0;
+
+        //color detection collision
+        this.randomColors = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), 
+        Math.floor(Math.random() * 255)]
+        this.color = `rgb(${this.randomColors[0]},${this.randomColors[1]},
+        ${this.randomColors[2]})`
+        console.log(this.color);
     }
 
     update(deltaTime){
@@ -20,8 +25,10 @@ class Enemy {
         }
     }
 
-    draw(context){
-        // context.fillRect(this.x, this.y, this.width, this.height);
-        context.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+    draw(context, collisionContext){
+        collisionContext.fillStyle = this.color;
+        collisionContext.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, 
+        this.spriteHeight, this.x, this.y, this.width, this.height);
     }
 }
