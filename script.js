@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         
         //score
         let score = 0;
-        context.font = '50px Impact';
+        context.font = '30px Impact';
     
         //background game music
         const backgroundMusic = new Audio('./assets/music/background.ogg');
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function(){
         function drawScoreAndHealth() {
             context.fillStyle='white';
             //health
-            context.fillText('Score: ' + score, 50, 75);
+            context.fillText('Score: ' + score, 30, 50);
             //health
-            context.fillText('Lives: ' + game.lives, 250, 75);
+            context.fillText('Lives: ' + game.lives, 150, 50);
         }
     
         //CLICK EVENT LISTENER -> COLOR DETECTION
