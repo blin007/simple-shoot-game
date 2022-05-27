@@ -36,10 +36,25 @@ div.start {
     text-align: center;
 }
 
-div.start button.playBtn {
-    font-size: 25px;
+div.end {
+    visibility: hidden;
+    position: absolute;
+    bottom: 10px;
+    text-align:center;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-button.playBtn:hover {
+div.start button.playBtn, div.end button.replayBtn {
+    font-size: 25px;
+    border-radius: 8px;
+}
+
+button.playBtn:hover, button.replayBtn:hover {
     cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+button.playBtn:active, button.replayBtn:active {
+    transform: translateY(4px);
 }

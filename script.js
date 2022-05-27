@@ -76,9 +76,8 @@ document.addEventListener('DOMContentLoaded', function(){
         function drawGameOver(){
             context.textAlign = 'center';
             context.fillStyle='white';
-            context.fillText('GAME OVER', canvas.width * 0.5 + 5, canvas.height * 0.5 - 20);
-            context.fillText('Final Score is ' + score, canvas.width * 0.5 + 5, canvas.height * 0.5 + 40);
-            context.fillText('Reload to try again', canvas.width * 0.5 + 5, canvas.height * 0.5 + 100);
+            context.fillText('GAME OVER', canvas.width * 0.5 + 5, canvas.height * 0.5 - 30);
+            context.fillText('Final Score is ' + score, canvas.width * 0.5 + 5, canvas.height * 0.5 + 30);
         }
     
         let lastTime = 1;
@@ -94,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function(){
             game.draw();
             if(!game.gameOver) requestAnimationFrame(animate);
             else {
+                const replayBtn = document.querySelector('div.end button.replayBtn');
+                replayBtn.style.visibility = 'visible';
                 backgroundMusic.pause();
                 gameOverMusic.autoplay = true;
                 gameOverMusic.play();
